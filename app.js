@@ -332,10 +332,10 @@ async function updateLiveChannels() {
   const liveChannelIds = [
     'amzgpxDsJjQ',   // Example channel IDs
     'RVORY42HQXM',
-    'XdeC7O8_WXU'
-	'fyChbGKVO6M'
-	'w-ohDN80N24'
-	'Cgv3r_j_k-0'
+    'XdeC7O8_WXU',
+	'fyChbGKVO6M',
+	'w-ohDN80N24',
+	'Cgv3r_j_k-0',
   ];
 
   liveChannelIds.forEach(async (videoId) => {
@@ -387,3 +387,4 @@ updateLiveChannels();
 
 // Call the update function every 24 hours (86400000ms)
 setInterval(updateLiveChannels, 24 * 60 * 60 * 1000);  // 24 hours interval
+
