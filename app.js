@@ -151,7 +151,7 @@ const channels = {
    MOVIES: [
          { name: 'Crawl', url: 'https://videos.gia.tv/giatv/movies/playlist/210631/Crawl_2019_720p_BluRay_x264_ESub_Hollymoviehd.mp4', type: 'mp4', logo: '' },
 		 { name:'Delivery Rider', url: 'https://videos.gia.tv/giatv/movies/playlist/210273/The_Delivery_Rider_2025_720p_NF_WEB_DL_x264_ESub_Hollymoviehd.mp4', type: 'mp4', logo: '' },
-		 { name: 'Paradise Inn', url: 'https://jungotvmedia.chanall.tv/jungotv/SOLARParadiseInnTGSanitized10mbps/playlist_720p.m3u8', type: 'm3u8', logo: '' },
+		 { name: 'The Elixer 2025', url: 'https://flashstream.cc/streamsvr/7NepSXb7CC/1-2?e=YmV0bFFtUUlPWTA5Y3RrVDFDd0N2WFNCbWxGM09oT3JhUUJ6STdIYTZZS296TC8xenlRNFZVcGZjNk9RVnN2Q3pNZzNjeXlpdnFhdGpLdE5BZm9aemc9PQO', type: 'mp4', logo: '' },
          { name: 'Rampage (2018)', url: 'https://sv-02.pkayprekcdn25.online/dl/CMivdXBUP3?t=cg3vx0tVOXWGq4rHPDRsLg&e=1761278963&m=NEtSS29rTWJWcm5JeE5LZGJXTG9UU0g0VUNyYmp3RkI1R1R5VXZGVS9RYWFSMHVhV3RwZEdHYVY0UlpyYXVnaAU', type: 'mp4', logo: '' },
 		 { name: 'Nena', url: 'https://jungotvmedia.chanall.tv/jungotv/SOLARNenaTGFull15mbps/playlist_720p.m3u8', type: 'm3u8', logo: '' },
 		 { name: 'Darna at Ding', url: 'https://jungotvmedia.chanall.tv/jungotv/SOLARDarnaAtDingFULL10mbps/playlist_720p.m3u8', type: 'm3u8', logo: '' },
@@ -387,5 +387,6 @@ updateLiveChannels();
 
 // Call the update function every 24 hours (86400000ms)
 setInterval(updateLiveChannels, 24 * 60 * 60 * 1000);  // 24 hours interval
+
 
 
