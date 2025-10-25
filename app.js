@@ -52,7 +52,6 @@ const channels = {
   { name: 'CINEMO', url: 'https://d1bail49udbz1k.cloudfront.net/out/v1/3a895f368f4a467c9bca0962559efc19/index.mpd', type: 'mpd', logo: '' },
   { name: 'SINEMANILA', url: 'https://live20.bozztv.com/giatv/giatv-sinemanila/sinemanila/chunks.m3u8', type: 'hls', logo: '' }, 
   { name: 'GMA 7', url: 'https://conv.iyadtv.workers.dev/gma7x/stream.mpd', keyId: '31363231383438333031323033393138', key: '38694e34324d543478316b7455753437', type: 'mpd', logo: '' },
-    { name: 'ALLTV', url: 'https://conv.iyadtv.workers.dev/alltv/manifest.mpd', keyId: 'bd17afb5dc9648a39be79ee3634dd4b8', key: '3ecf305d54a7729299b93a3d69c02ea5', type: 'mpd', logo: '' }, 
   { name: 'CLTV 36', url: 'https://live.cltv36.tv:5443/LiveApp/streams/cltvlive.m3u8', type: 'hls', logo: '' },    
   { name: 'KAPAMILYA', url: 'https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01006-abs-cbn-kapcha-dash-abscbnono/index.mpd', keyId: 'bd17afb5dc9648a39be79ee3634dd4b8', key: '3ecf305d54a7729299b93a3d69c02ea5', type: 'mpd', logo: '' },
   { name: 'A2Z', url: 'https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_a2z/default/index.mpd', keyId: 'f703e4c8ec9041eeb5028ab4248fa094', key: 'c22f2162e176eee6273a5d0b68d19530', type: 'mpd', logo: '' },
@@ -151,7 +150,7 @@ const channels = {
    MOVIES: [
          { name: 'Crawl', url: 'https://videos.gia.tv/giatv/movies/playlist/210631/Crawl_2019_720p_BluRay_x264_ESub_Hollymoviehd.mp4', type: 'mp4', logo: '' },
 		 { name:'Delivery Rider', url: 'https://videos.gia.tv/giatv/movies/playlist/210273/The_Delivery_Rider_2025_720p_NF_WEB_DL_x264_ESub_Hollymoviehd.mp4', type: 'mp4', logo: '' },
-		 { name: 'The Elixer 2025', url: 'https://flashstream.cc/streamsvr/7NepSXb7CC/1-2?e=YmV0bFFtUUlPWTA5Y3RrVDFDd0N2WFNCbWxGM09oT3JhUUJ6STdIYTZZS296TC8xenlRNFZVcGZjNk9RVnN2Q3pNZzNjeXlpdnFhdGpLdE5BZm9aemc9PQO.mp4', type: 'mp4', logo: '' },
+		 { name: 'The Elixer 2025', url: 'https://flashstream.cc/embed/7NepSXb7CC?e=YmV0bFFtUUlPWTA5Y3RrVDFDd0N2WFNCbWxGM09oT3JhUUJ6STdIYTZZS296TC8xenlRNFZVcGZjNk9RVnN2Q3pNZzNjeXlpdnFhdGpLdE5BZm9aemc9PQO', type: 'mp4', logo: '' },
          { name: 'Rampage (2018)', url: 'https://sv-02.pkayprekcdn25.online/dl/CMivdXBUP3?t=cg3vx0tVOXWGq4rHPDRsLg&e=1761278963&m=NEtSS29rTWJWcm5JeE5LZGJXTG9UU0g0VUNyYmp3RkI1R1R5VXZGVS9RYWFSMHVhV3RwZEdHYVY0UlpyYXVnaAU', type: 'mp4', logo: '' },
 		 { name: 'Nena', url: 'https://jungotvmedia.chanall.tv/jungotv/SOLARNenaTGFull15mbps/playlist_720p.m3u8', type: 'm3u8', logo: '' },
 		 { name: 'Darna at Ding', url: 'https://jungotvmedia.chanall.tv/jungotv/SOLARDarnaAtDingFULL10mbps/playlist_720p.m3u8', type: 'm3u8', logo: '' },
@@ -387,6 +386,7 @@ updateLiveChannels();
 
 // Call the update function every 24 hours (86400000ms)
 setInterval(updateLiveChannels, 24 * 60 * 60 * 1000);  // 24 hours interval
+
 
 
 
