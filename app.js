@@ -75,7 +75,7 @@ function hideAll() {
   destroyPlayers();
   stopRadio();
 
-  // Ensure that the drawer is hidden in all other sections except Live TV
+  // Hide drawer for all sections except Live TV
   document.getElementById('iptv-sec').classList.remove('active');
 }
 
@@ -88,7 +88,7 @@ function showIPTV() {
   hideAll();
   const iptvSec = document.getElementById('iptv-sec');
   iptvSec.classList.remove('hidden');
-  iptvSec.classList.add('active'); // Add active class to show drawer in Live TV
+  iptvSec.classList.add('active'); // Only show drawer for Live TV section
   renderIPTVList();
   openIPTVDdrawer(); // Open drawer for Live TV
   if (CHANNELS.IPTV.length) playIPTV(CHANNELS.IPTV[0]); // auto-play first
