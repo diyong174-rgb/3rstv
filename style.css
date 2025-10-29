@@ -1,3 +1,4 @@
+/* Reset defaults */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -130,7 +131,7 @@ nav a:hover {
   max-height: calc(100vh - 150px);
   overflow-y: auto;
   padding-right: 4px;
-  padding-left: 12px; /* Added padding */
+  padding-left: 12px;
 }
 
 .ch-item {
@@ -162,22 +163,114 @@ nav a:hover {
   margin-bottom: 10px;
 }
 
+/* Radio */
+#radio-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+}
+
+#radio-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#audio-player {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* MyList */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: #1a1a1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.btn {
+  padding: 8px 10px;
+  border: 1px solid #ffffff2a;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn:hover {
+  background: #2c2c2c;
+}
+
+/* Chatroom */
+#chat-box {
+  height: 50vh;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.msg {
+  padding: 8px 10px;
+  background: #222;
+  border: 1px solid #ffffff14;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+#chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+#chat-input input {
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid #ffffff22;
+  background: #1e1e1e;
+  color: #fff;
+  padding: 10px;
+}
+
+#chat-input button {
+  min-width: 110px;
+}
+
 /* Adjustments for Mobile */
 @media (max-width: 900px) {
-  /* Remove the "Channels" button on mobile */
   #open-drawer-btn {
     display: none;
   }
 
-  /* Remove the IPTV channel drawer from all sections except Live TV and Radio */
   #iptv-drawer {
-    display: none;
-  }
-
-  /* Keep IPTV channel drawer visible only for Live TV and Radio on mobile */
-  #iptv-sec #iptv-drawer,
-  #radio-sec #iptv-drawer {
-    display: block;
     position: static;
     margin-top: 10px;
     width: 100%;
@@ -185,28 +278,12 @@ nav a:hover {
     padding: 20px 12px;
   }
 
-  /* Remove the radio section completely on mobile */
-  #radio-sec {
-    display: none;
+  #iptv-list {
+    padding-left: 0;
+    overflow-y: scroll;
+    max-height: 60vh;
   }
 
-  /* Remove the MyList section completely on mobile */
-  #mylist-sec {
-    display: none;
-  }
-
-  /* Remove the Chatroom section completely on mobile */
-  #chat-sec {
-    display: none;
-  }
-
-  /* Ensure the video player takes full width on mobile */
-  #video-wrap {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  /* Mobile-Friendly Header */
   header {
     padding: 10px 8px;
     flex-direction: column;
@@ -233,8 +310,32 @@ nav a:hover {
     font-size: 16px;
   }
 
-  /* Adjust the Hero Section for Mobile */
-  .hero h1 {
-    font-size: 28px;
+  #radio-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #radio-player-wrap {
+    order: 0;
+    width: 100%;
+  }
+
+  #radio-list {
+    order: 1;
+    max-height: 50vh;
+    margin-top: 12px;
+  }
+
+  #radio-player-wrap audio {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  #save-radio-btn {
+    margin-top: 12px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
   }
 }
