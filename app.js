@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Toggle Drawer Button (for Live TV)
   document.getElementById('open-drawer-btn').addEventListener('click', toggleDrawer);
-
+  
   // Initialize the first section (Home)
   showHome();
 });
