@@ -270,21 +270,20 @@ nav a:hover {
     display: none;
   }
 
-  /* Move the IPTV channel drawer below the video container */
+  /* Remove the IPTV channel drawer completely on mobile (except for Live TV and Radio) */
   #iptv-drawer {
+    display: none;
+  }
+
+  /* Keep IPTV channel drawer only for Live TV and Radio on mobile */
+  #iptv-sec #iptv-drawer,
+  #radio-sec #iptv-drawer {
+    display: block;
     position: static;
     margin-top: 10px;
     width: 100%;
     height: auto;
     padding: 20px 12px;
-    display: block; /* Ensure the drawer is visible below the video container */
-  }
-
-  /* Ensure IPTV categories are visible */
-  #iptv-list {
-    padding-left: 0;
-    overflow-y: scroll;
-    max-height: 60vh; /* Ensures scrolling */
   }
 
   /* Remove the radio section completely on mobile */
