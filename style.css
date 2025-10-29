@@ -1,111 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #111;
-  color: #fff;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.logo {
-  color: #e50914;
-  font-weight: 700;
-  font-size: 20px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 14px;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a:hover {
-  color: #e50914;
-}
-
-.hero {
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 70px;
-  background: linear-gradient(180deg, #0008, transparent),
-    url('https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
-}
-
-.hero h1 {
-  font-size: 38px;
-  text-shadow: 0 2px 10px #000;
-}
-
-.section {
-  padding: 85px 16px 28px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* IPTV video area */
-#video-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: #000;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-#video-player {
-  width: 100%;
-  height: 100%;
-}
-
-.corner-btn {
-  position: absolute;
-  top: 12px;
-  padding: 8px 12px;
-  border: 1px solid #fff6;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-#open-drawer-btn {
-  right: 12px;
-}
-
-#save-to-mylist-btn {
-  left: 12px;
-}
-
-/* IPTV Drawer (right side) */
+/* Base styles for the drawer */
 #iptv-drawer {
   position: fixed;
   top: 0;
@@ -120,49 +13,39 @@ nav a:hover {
   transition: right 0.28s ease-in-out;
 }
 
+/* When Live TV section is active, show the drawer */
+#iptv-sec.active #iptv-drawer {
+  right: 0;
+}
+
 #iptv-drawer.open {
   right: 0;
 }
 
-#iptv-list,
-#radio-list {
-  max-height: 60vh;
-  overflow-y: auto;
+/* Hidden state for mobile when not on Live TV */
+#iptv-drawer {
+  display: none;
 }
 
+/* Ensure that the drawer is only shown on Live TV */
+#iptv-sec.active #iptv-drawer {
+  display: block;
+}
+
+/* Media queries for mobile layout */
 @media (max-width: 900px) {
-  #iptv-drawer {
-    display: none; /* Hide drawer by default on mobile */
-  }
-
-  #iptv-sec.active #iptv-drawer {
-    display: block; /* Only show drawer in Live TV */
-  }
-
+  /* Adjust header and navigation for mobile */
   header nav ul {
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  nav a {
-    font-size: 16px;
-    padding: 8px 10px;
+  /* Adjust the drawer on mobile to hide or show based on section */
+  #iptv-drawer {
+    display: none; /* Hide by default */
   }
 
-  header {
-    padding: 10px 8px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  nav ul {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
+  #iptv-sec.active #iptv-drawer {
+    display: block;
   }
 }
