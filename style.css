@@ -26,7 +26,7 @@ header {
 .logo {
   color: #e50914;
   font-weight: 700;
-  font-size: 18px; /* Reduced font size for compact header */
+  font-size: 18px; /* Shortened the logo */
 }
 
 nav ul {
@@ -40,7 +40,7 @@ nav a {
   color: #fff;
   text-decoration: none;
   font-size: 14px;
-  padding: 8px 12px; /* Added padding for better spacing */
+  padding: 8px 12px;
   white-space: nowrap; /* Prevent text wrapping */
 }
 
@@ -279,34 +279,41 @@ nav a:hover {
     padding: 20px 12px;
   }
 
-  /* Adjust video player for mobile */
-  #video-wrap {
-    width: 100%;
-    aspect-ratio: 16/9;
-    margin-bottom: 20px;
-  }
-
   /* Ensure IPTV categories are visible */
   #iptv-list {
     padding-left: 0;
   }
 
+  /* Ensure categories are visible horizontally on mobile */
+  header nav ul {
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center; /* Center the items */
+  }
+
+  nav a {
+    font-size: 16px; /* Adjust font size for better spacing */
+    padding: 8px 10px;
+  }
+
+  nav a:hover {
+    font-size: 16px; /* Keep the font size same when hovered */
+  }
+
   /* Make sure header elements are mobile-friendly */
-  header nav {
-    display: block;
-    text-align: center;
+  header {
+    padding: 10px 8px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 20px;
+    margin-bottom: 10px;
   }
 
   nav ul {
     display: flex;
-    justify-content: center; /* Center the navigation items */
-    gap: 14px;
-    flex-wrap: wrap; /* Wrap if space is insufficient */
-  }
-
-  nav a {
-    display: inline-block;
-    padding: 8px 0;
-    font-size: 16px;
+    justify-content: center;
+    gap: 8px;
   }
 }
