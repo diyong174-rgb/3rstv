@@ -265,43 +265,38 @@ nav a:hover {
 
 /* Adjustments for Mobile */
 @media (max-width: 900px) {
-  /* Hide the "Channels" button on mobile */
+  /* Remove the "Channels" button on mobile */
   #open-drawer-btn {
     display: none;
   }
 
-  /* Move the IPTV channel drawer below the video container */
+  /* Remove the IPTV channel drawer completely on mobile */
   #iptv-drawer {
-    position: static;
-    margin-top: 10px;
+    display: none;
+  }
+
+  /* Remove the radio section completely on mobile */
+  #radio-sec {
+    display: none;
+  }
+
+  /* Remove the MyList section completely on mobile */
+  #mylist-sec {
+    display: none;
+  }
+
+  /* Remove the Chatroom section completely on mobile */
+  #chat-sec {
+    display: none;
+  }
+
+  /* Ensure the video player takes full width on mobile */
+  #video-wrap {
     width: 100%;
-    height: auto;
-    padding: 20px 12px;
+    margin-bottom: 15px;
   }
 
-  /* Ensure IPTV categories are visible */
-  #iptv-list {
-    padding-left: 0;
-    overflow-y: scroll;
-    max-height: 60vh; /* Ensures scrolling */
-  }
-
-  /* Ensure categories are visible horizontally on mobile */
-  header nav ul {
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-    justify-content: center; /* Center the items */
-  }
-
-  nav a {
-    font-size: 16px; /* Adjust font size for better spacing */
-    padding: 8px 10px;
-  }
-
-  nav a:hover {
-    font-size: 16px; /* Keep the font size same when hovered */
-  }
-
-  /* Make sure header elements are mobile-friendly */
+  /* Mobile-Friendly Header */
   header {
     padding: 10px 8px;
     flex-direction: column;
@@ -317,5 +312,25 @@ nav a:hover {
     display: flex;
     justify-content: center;
     gap: 8px;
+  }
+
+  nav a {
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+
+  nav a:hover {
+    font-size: 16px;
+  }
+
+  /* Adjust navigation items for small screens */
+  header nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Adjust the Hero Section for Mobile */
+  .hero h1 {
+    font-size: 28px;
   }
 }
