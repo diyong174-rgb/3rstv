@@ -51,7 +51,7 @@ nav a:hover {
   align-items: center;
   justify-content: center;
   padding-top: 70px;
-  background: linear-gradient(180deg, #0008, transparent), 
+  background: linear-gradient(180deg, #0008, transparent),
     url('https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
 }
 
@@ -124,14 +124,21 @@ nav a:hover {
   right: 0;
 }
 
-/* Mobile Styles */
+#iptv-list,
+#radio-list {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
 @media (max-width: 900px) {
-  /* Hide the "Channels" button on mobile */
-  #open-drawer-btn {
-    display: none;
+  #iptv-drawer {
+    display: none; /* Hide drawer by default on mobile */
   }
 
-  /* Ensure IPTV categories are visible horizontally on mobile */
+  #iptv-sec.active #iptv-drawer {
+    display: block; /* Only show drawer in Live TV */
+  }
+
   header nav ul {
     flex-wrap: wrap;
     justify-content: center;
@@ -157,22 +164,5 @@ nav a:hover {
     display: flex;
     justify-content: center;
     gap: 8px;
-  }
-
-  /* Hide channel drawer on mobile for non-Live TV sections */
-  #iptv-drawer {
-    display: none;
-  }
-
-  /* Only show drawer in Live TV */
-  #iptv-sec.active #iptv-drawer {
-    display: block;
-  }
-
-  /* Channel and radio list should be scrollable */
-  #iptv-list,
-  #radio-list {
-    max-height: 60vh;
-    overflow-y: auto;
   }
 }
