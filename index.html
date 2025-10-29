@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Peanut</title>
+
+    <!-- External libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.9.3/shaka-player.compiled.min.js"></script>
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">PeanutFlix</div>
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showHome();return false;">Home</a></li>
+      <li><a href="#" onclick="showIPTV();return false;">Live TV</a></li>
+      <li><a href="#" onclick="showRadio();return false;">Radio</a></li>
+      <li><a href="#" onclick="showMyList();return false;">MyList</a></li>
+      <li><a href="#" onclick="showChat();return false;">Chatroom</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HOME / WELCOME -->
+<section id="home-sec" class="hero">
+  <h1></h1>
+</section>
+
+<!-- IPTV ONLY -->
+<section id="iptv-sec" class="section hidden">
+  <h2 style="margin-bottom:12px;">Live TV</h2>
+  <div id="video-wrap">
+    <button id="save-to-mylist-btn" class="corner-btn">☆ Save</button>
+    <button id="open-drawer-btn" class="corner-btn">Channels ▸</button>
+    <div id="video-player"></div>
+  </div>
+  <p style="opacity:.7;margin-top:10px;font-size:12px;">Tip: “Channels ▸” para ilabas ang drawer (auto-hide after 10s). “☆ Save” para i-add sa MyList.</p>
+</section>
+
+<!-- RADIO ONLY -->
+<section id="radio-sec" class="section hidden">
+  <h2 style="margin-bottom:12px;">Radio</h2>
+  <div id="radio-layout">
+    <div>
+      <div id="radio-list"></div>
+    </div>
+    <div>
+      <div style="background:#1a1a1a;border:1px solid #ffffff1a;border-radius:10px;padding:10px;">
+        <p style="opacity:.85;margin-bottom:8px;">Now Playing</p>
+        <audio id="audio-player" controls></audio>
+        <button id="save-radio-btn" class="btn" style="margin-top:8px;">☆ Save to MyList</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MYLIST -->
+<section id="mylist-sec" class="section hidden">
+  <h2 style="margin-bottom:12px;">MyList</h2>
+  <div class="grid" id="mylist-grid"></div>
+</section>
+
+<!-- CHATROOM -->
+<section id="chat-sec" class="section hidden">
+  <h2 style="margin-bottom:12px;">Chatroom</h2>
+  <div id="chat-box"></div>
+  <div id="chat-input">
+    <input id="chat-text" type="text" placeholder="Type message..." onkeydown="if(event.key==='Enter'){sendMsg();}"/>
+    <button class="btn" onclick="sendMsg()">Send</button>
+  </div>
+</section>
+
+<!-- IPTV Drawer -->
+<aside id="iptv-drawer">
+  <h3 style="margin-bottom:10px;">IPTV Channels</h3>
+  <input id="iptv-search" type="text" placeholder="Search channel...">
+  <div id="iptv-list"></div>
+</aside>
+
+<!-- Link to external JS -->
+<script src="app.js"></script>
+</body>
+</html>

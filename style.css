@@ -1,0 +1,321 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #111;
+  color: #fff;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.logo {
+  color: #e50914;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  flex-wrap: nowrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  color: #e50914;
+}
+
+.hero {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+  background: linear-gradient(180deg, #0008, transparent),
+    url('https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.hero h1 {
+  font-size: 38px;
+  text-shadow: 0 2px 10px #000;
+}
+
+.section {
+  padding: 85px 16px 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#video-player {
+  width: 100%;
+  height: 100%;
+}
+
+.corner-btn {
+  position: absolute;
+  top: 12px;
+  padding: 8px 12px;
+  border: 1px solid #fff6;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#open-drawer-btn {
+  right: 12px;
+}
+
+#save-to-mylist-btn {
+  left: 12px;
+}
+
+/* IPTV Drawer (right side) */
+#iptv-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100vh;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+  border-left: 1px solid #ffffff22;
+  padding: 78px 12px 16px;
+  transition: right 0.28s ease-in-out;
+}
+
+#iptv-drawer.open {
+  right: 0;
+}
+
+#iptv-list {
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding-right: 4px;
+  padding-left: 12px; /* Added padding */
+}
+
+.ch-item {
+  padding: 10px;
+  margin-bottom: 8px;
+  background: #222;
+  border: 1px solid #ffffff1a;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ch-item:hover {
+  background: #2e2e2e;
+}
+
+.ch-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#iptv-search {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ffffff22;
+  background: #1a1a1a;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* Radio */
+#radio-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+}
+
+#radio-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#audio-player {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* MyList */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: #1a1a1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.btn {
+  padding: 8px 10px;
+  border: 1px solid #ffffff2a;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn:hover {
+  background: #2c2c2c;
+}
+
+/* Chatroom */
+#chat-box {
+  height: 50vh;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.msg {
+  padding: 8px 10px;
+  background: #222;
+  border: 1px solid #ffffff14;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+#chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+#chat-input input {
+  flex: 1;
+  border-radius: 8px;
+  border: 1px solid #ffffff22;
+  background: #1e1e1e;
+  color: #fff;
+  padding: 10px;
+}
+
+#chat-input button {
+  min-width: 110px;
+}
+
+/* Adjustments for Mobile */
+@media (max-width: 900px) {
+  /* Hide the "Channels" button on mobile */
+  #open-drawer-btn {
+    display: none;
+  }
+
+  /* Move the IPTV channel drawer below the video container */
+  #iptv-drawer {
+    position: static;
+    margin-top: 10px;
+    width: 100%;
+    height: auto;
+    padding: 20px 12px;
+  }
+
+  /* Ensure IPTV categories are visible */
+  #iptv-list {
+    padding-left: 0;
+    overflow-y: scroll;
+    max-height: 60vh; /* Ensures scrolling */
+  }
+
+  /* Ensure categories are visible horizontally on mobile */
+  header nav ul {
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center; /* Center the items */
+  }
+
+  nav a {
+    font-size: 16px; /* Adjust font size for better spacing */
+    padding: 8px 10px;
+  }
+
+  nav a:hover {
+    font-size: 16px; /* Keep the font size same when hovered */
+  }
+
+  /* Make sure header elements are mobile-friendly */
+  header {
+    padding: 10px 8px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+}
