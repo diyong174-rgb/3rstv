@@ -283,8 +283,24 @@ nav a:hover {
     margin-bottom: 20px; /* Add some space between video and channel drawer */
   }
 
-  /* Hide header elements that aren't needed */
+  /* Make sure IPTV categories are visible */
+  #iptv-list {
+    padding-left: 0; /* Remove unnecessary padding */
+  }
+
+  /* Ensure header elements are mobile-friendly */
   header nav {
-    display: none; /* You can also make a mobile-friendly menu if needed */
+    display: block;
+    text-align: center;
+  }
+
+  nav ul {
+    display: block;
+  }
+
+  nav a {
+    display: block;
+    padding: 8px 0;
+    font-size: 16px;
   }
 }
