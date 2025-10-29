@@ -1,3 +1,4 @@
+/* General Styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -317,5 +318,15 @@ nav a:hover {
     display: flex;
     justify-content: center;
     gap: 8px;
+  }
+
+  /* Hide channel drawer on mobile for non-Live TV sections */
+  #iptv-drawer {
+    display: none;
+  }
+
+  /* Only show drawer in Live TV */
+  #iptv-sec.active #iptv-drawer {
+    display: block;
   }
 }
