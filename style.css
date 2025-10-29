@@ -269,37 +269,40 @@ nav a:hover {
 
   /* Move the IPTV channel drawer below the video container */
   #iptv-drawer {
-    position: static; /* Remove fixed positioning */
-    margin-top: 10px; /* Add some space */
-    width: 100%; /* Ensure it's full width */
-    height: auto; /* Adjust height for mobile */
-    padding: 20px 12px; /* Add padding to make it look neat */
+    position: static;
+    margin-top: 10px;
+    width: 100%;
+    height: auto;
+    padding: 20px 12px;
   }
 
   /* Adjust video player for mobile */
   #video-wrap {
     width: 100%;
     aspect-ratio: 16/9;
-    margin-bottom: 20px; /* Add some space between video and channel drawer */
+    margin-bottom: 20px;
   }
 
-  /* Make sure IPTV categories are visible */
+  /* Ensure IPTV categories are visible */
   #iptv-list {
-    padding-left: 0; /* Remove unnecessary padding */
+    padding-left: 0;
   }
 
-  /* Ensure header elements are mobile-friendly */
+  /* Make sure header elements are mobile-friendly */
   header nav {
     display: block;
     text-align: center;
   }
 
   nav ul {
-    display: block;
+    display: flex;
+    justify-content: center; /* Center the navigation items */
+    gap: 14px;
+    flex-wrap: wrap; /* Wrap if space is insufficient */
   }
 
   nav a {
-    display: block;
+    display: inline-block;
     padding: 8px 0;
     font-size: 16px;
   }
