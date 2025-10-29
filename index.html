@@ -1,38 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>PeanutFlix</title>
-
-    <!-- External libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.9.3/shaka-player.compiled.min.js"></script>
-    
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header>
-  <div class="logo">PeanutFlix</div>
-  <nav>
-    <ul>
-      <li><a href="#" onclick="showHome();return false;">Home</a></li>
-      <li><a href="#" onclick="showIPTV();return false;">Live TV</a></li>
-      <li><a href="#" onclick="showRadio();return false;">Radio</a></li>
-      <li><a href="#" onclick="showMyList();return false;">MyList</a></li>
-      <li><a href="#" onclick="showChat();return false;">Chatroom</a></li>
-    </ul>
-  </nav>
-</header>
-
-<!-- HOME / WELCOME -->
-<section id="home-sec" class="hero">
-  <h1>Welcome to PeanutFlix</h1>
-</section>
-
-<!-- IPTV ONLY -->
+<!-- LIVE TV Section -->
 <section id="iptv-sec" class="section hidden">
   <h2 style="margin-bottom:12px;">Live TV</h2>
   <div id="video-wrap">
@@ -47,7 +13,7 @@
   </div>
 </section>
 
-<!-- RADIO ONLY -->
+<!-- RADIO Section -->
 <section id="radio-sec" class="section hidden">
   <h2 style="margin-bottom:12px;">Radio</h2>
   <div id="radio-layout">
@@ -68,24 +34,3 @@
     <div id="radio-list"></div>
   </div>
 </section>
-
-<!-- MYLIST -->
-<section id="mylist-sec" class="section hidden">
-  <h2 style="margin-bottom:12px;">MyList</h2>
-  <div class="grid" id="mylist-grid"></div>
-</section>
-
-<!-- CHATROOM -->
-<section id="chat-sec" class="section hidden">
-  <h2 style="margin-bottom:12px;">Chatroom</h2>
-  <div id="chat-box"></div>
-  <div id="chat-input">
-    <input id="chat-text" type="text" placeholder="Type message..." onkeydown="if(event.key==='Enter'){sendMsg();}"/>
-    <button class="btn" onclick="sendMsg()">Send</button>
-  </div>
-</section>
-
-<!-- Link to external JS -->
-<script src="app.js"></script>
-</body>
-</html>
