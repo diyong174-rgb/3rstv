@@ -154,26 +154,27 @@
       const videoSource = document.getElementById('videoSource');
       const movieInfo = document.getElementById('movieInfo');
       const pgInfo = document.getElementById('pgInfo');
-      
+      const videoPlayer = document.getElementById('videoPlayer');
+
       // Check if it's a GIATV movie (not showing title/logo/PG)
       if (movie.isGiatv) {
         videoSource.src = movie.src;
         movieInfo.innerHTML = "";  // No title for GIATV movies
         pgInfo.innerHTML = "";  // No parental guidance for GIATV movies
-        // For .m3u8, we need to use HLS.js to load and play the stream
-        if (movie.src.endsWith(".m3u8")) {
-          if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(movie.src);
-            hls.attachMedia(document.getElementById('videoPlayer'));
-          }
+        // For .m3u8, use HLS.js
+        if (movie.src.endsWith(".m3u8") && Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(movie.src);
+          hls.attachMedia(videoPlayer);
+        } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+          videoPlayer.src = movie.src; // Native support for HLS in Safari
         }
       } else {
         videoSource.src = movie.src;
         movieInfo.innerHTML = movie.title;  // Show the movie title
         pgInfo.innerHTML = "Parental Guidance: PG";  // Add parental guidance for non-GIATV
       }
-      document.getElementById('videoPlayer').load();
+      videoPlayer.load();
     }
 
     // Event listener for video play
