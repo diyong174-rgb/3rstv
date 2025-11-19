@@ -143,7 +143,7 @@
   </div>
 
   <script>
-    // Sample movie list with .m3u8 and .mp4 formats
+    // Movie list with .m3u8 and .mp4 formats
     const moviesList = [
       { src: "https://videos.gia.tv/giatv/movies/playlist/210273/Wang_Fam_2015_tt5209276_WD_480.mp4", title: "WangFam", isGiatv: true, pg: "Parental Guidance" },
       { src: "https://videos.gia.tv/giatv/movies/playlist/210631/Crawl_2019_720p_BluRay_x264_ESub_Hollymoviehd.mp4", title: "Crawl", isGiatv: true, pg: "Restricted" },
@@ -182,7 +182,7 @@
     // Generic error handler (remove pop-up)
     function handleVideoError() {
       console.error("Error playing the video.");
-      // errorMessage.style.display = 'block'; // Commented this out to prevent pop-up
+      playNextMovie(); // Skip to the next movie immediately
     }
 
     // Unified function to play a media item (movie or ad)
@@ -210,7 +210,7 @@
           hlsInstance.on(Hls.Events.ERROR, function (event, data) {
             if (data.fatal) {
               console.error("Fatal HLS error:", data);
-              handleVideoError();
+              handleVideoError(); // Skip to next movie if error
             }
           });
         } else if (mainV.canPlayType('application/vnd.apple.mpegurl')) {
@@ -219,7 +219,7 @@
           mainV.play().catch(handleVideoError);
         } else {
           console.error("HLS is not supported in this browser");
-          handleVideoError();
+          handleVideoError(); // Skip to next movie if error
         }
       } else {
         // For MP4 and other standard formats
