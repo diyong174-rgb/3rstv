@@ -47,9 +47,9 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      width: 50px;  /* Adjusted size for the logo */
+      width: 50px;
       height: 50px;
-      background-image: url('https://i.ibb.co/nN0VGRY8/Chat-GPT-Image-Oct-4-2025-05-05-12-AM-1.png');  /* Updated logo URL */
+      background-image: url('https://i.ibb.co/nN0VGRY8/Chat-GPT-Image-Oct-4-2025-05-05-12-AM-1.png');
       background-size: contain;
       background-repeat: no-repeat;
       z-index: 10;
@@ -108,6 +108,19 @@
       display: none;
       z-index: 20;
     }
+
+    .error-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 0, 0, 0.7);
+      color: white;
+      padding: 20px;
+      font-size: 20px;
+      display: none;
+      z-index: 30;
+    }
   </style>
   <!-- Include HLS.js for .m3u8 support -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -125,6 +138,9 @@
     <div id="adContainer" class="ad-container">
       <p>Ad Playing...</p>
     </div>
+    <div id="errorMessage" class="error-message">
+      <p>Sorry, this video cannot be played in your browser.</p>
+    </div>
   </div>
 
   <script>
@@ -137,10 +153,7 @@
       { src: "https://ph-en.plp4ytv14.workers.dev/nflx.mp4?file=aD5PSptcaGi07yH%2Be0am%2BImv96euKcVvnMrFzKUa4ALTA4PbJDebTbsOwAzD1RKo&expiry=oqFh%2B149Y%2BpyhYhZXMTrJQ%3D%3D&mac=ecdfaf3336cc44cb125aff33f4a378f686da12860995be86152009e5c29073ad", title: "2012", isGiatv: false }
     ];
 
-    // GIATV Source URL to block between 7 PM to 10 PM
     const giatvSourceUrl = "https://videos.gia.tv/giatv/movies/playlist";
-
-    // Ads list
     const adsList = [
       { src: "https://videos.gia.tv/giatv/movies/playlist/210273/Coca_Cola___Happiness_Factory__2006__Netherlands_.mp4", title: "Ads" },
       { src: "https://videos.gia.tv/giatv/movies/playlist/210273/MARK_CIGARETTES___PHOTO_TVC_30s_HD.mp4", title: "Ads" }
@@ -154,7 +167,11 @@
       const videoSource = document.getElementById('videoSource');
       const movieInfo = document.getElementById('movieInfo');
       const pgInfo = document.getElementById('pgInfo');
+      const errorMessage = document.getElementById('errorMessage');
       const videoPlayer = document.getElementById('videoPlayer');
+
+      // Reset error message
+      errorMessage.style.display = 'none';
 
       // Check if it's a GIATV movie (not showing title/logo/PG)
       if (movie.isGiatv) {
@@ -166,6 +183,11 @@
           const hls = new Hls();
           hls.loadSource(movie.src);
           hls.attachMedia(videoPlayer);
+          hls.on(Hls.Events.ERROR, function (event, data) {
+            if (data.fatal) {
+              errorMessage.style.display = 'block';
+            }
+          });
         } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
           videoPlayer.src = movie.src; // Native support for HLS in Safari
         }
