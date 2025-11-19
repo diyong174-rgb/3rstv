@@ -32,7 +32,7 @@
     .fullscreen-btn {
       position: absolute;
       top: 10px;
-      right: 10px;
+      right: 50px;
       background-color: rgba(0, 0, 0, 0.5);
       color: #fff;
       border: none;
@@ -40,6 +40,18 @@
       cursor: pointer;
       font-size: 20px;
       border-radius: 5px;
+      z-index: 10;
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;  /* Adjust the logo size as needed */
+      height: 40px;
+      background-image: url('your-logo-url.png');  /* Replace with your logo URL */
+      background-size: contain;
+      background-repeat: no-repeat;
       z-index: 10;
     }
 
@@ -68,10 +80,19 @@
 
     .movie-info {
       position: absolute;
-      bottom: 20px;
+      top: 20px;
       left: 20px;
       color: white;
       font-size: 20px;
+      z-index: 10;
+    }
+
+    .pg-info {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      color: white;
+      font-size: 18px;
       z-index: 10;
     }
 
@@ -97,6 +118,8 @@
     </video>
     <button class="fullscreen-btn" onclick="toggleFullScreen()">🖥️</button>
     <div id="movieInfo" class="movie-info"></div>
+    <div id="pgInfo" class="pg-info"></div>
+    <div id="logo" class="logo"></div>
     <div id="adContainer" class="ad-container">
       <p>Ad Playing...</p>
     </div>
@@ -128,14 +151,17 @@
     function loadMovie(movie) {
       const videoSource = document.getElementById('videoSource');
       const movieInfo = document.getElementById('movieInfo');
+      const pgInfo = document.getElementById('pgInfo');
       
       // Check if it's a GIATV movie (not showing title/logo/PG)
       if (movie.isGiatv) {
         videoSource.src = movie.src;
-        movieInfo.innerHTML = "";  // No title/logo/PG for GIATV movies
+        movieInfo.innerHTML = "";  // No title for GIATV movies
+        pgInfo.innerHTML = "";  // No parental guidance for GIATV movies
       } else {
         videoSource.src = movie.src;
-        movieInfo.innerHTML = `Title: ${movie.title}<br>Parental Guidance: PG`;  // Add title and parental guidance for non-GIATV
+        movieInfo.innerHTML = movie.title;  // Show the movie title
+        pgInfo.innerHTML = "Parental Guidance: PG";  // Add parental guidance for non-GIATV
       }
       document.getElementById('videoPlayer').load();
     }
