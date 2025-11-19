@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IPTV Player</title>
   <style>
-    /* Basic reset */
     * {
       margin: 0;
       padding: 0;
@@ -21,7 +20,6 @@
       align-items: center;
     }
 
-    /* Video container styling */
     .video-container {
       width: 100%;
       height: 100%;
@@ -31,7 +29,6 @@
       align-items: center;
     }
 
-    /* Fullscreen button */
     .fullscreen-btn {
       position: absolute;
       top: 10px;
@@ -46,44 +43,90 @@
       z-index: 10;
     }
 
-    /* Video tag */
     video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    /* Mobile view */
     @media only screen and (max-width: 768px) {
       .video-container {
         max-width: 100%;
         max-height: 100%;
       }
       video {
-        object-fit: contain; /* Ensures video fits within the mobile screen */
+        object-fit: contain;
       }
     }
 
-    /* Desktop view */
     @media only screen and (min-width: 769px) {
       .video-container {
-        max-width: 80%; /* Adjust width for larger screens */
+        max-width: 80%;
         max-height: 80%;
       }
+    }
+
+    .movie-info {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      font-size: 20px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
   <div class="video-container">
     <video id="videoPlayer" controls>
-      <source src="your-video-file.mp4" type="video/mp4">
+      <source id="videoSource" src="" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <button class="fullscreen-btn" onclick="toggleFullScreen()">🖥️</button>
+    <div id="movieInfo" class="movie-info"></div>
   </div>
 
   <script>
-    // Toggle fullscreen function
+    // Sample movie list with .m3u8 and .mp4 formats
+    const moviesList = [
+      { src: "https://videos.gia.tv/giatv/movies/playlist/210273/Wang_Fam_2015_tt5209276_WD_480.mp4", title: "WangFam", isGiatv: true },
+      { src: "https://videos.gia.tv/giatv/movies/playlist/210631/Crawl_2019_720p_BluRay_x264_ESub_Hollymoviehd.mp4", title: "Crawl", isGiatv: true },
+      { src: "https://jungotvmedia.chanall.tv/jungotv/SolarMayLamokSaKulamboTGFULL10mbps/playlist_720p.m3u8", title: "May Lamok sa loob ng Kulambo", isGiatv: false },
+      { src: "https://jungotvmedia.chanall.tv/jungotv/SOLARKumakasaKahitNagiisaTGFULL10mbps/playlist_720p.m3u8", title: "Kumakasa kahit Mag-isa", isGiatv: false },
+      { src: "https://ph-en.plp4ytv14.workers.dev/nflx.mp4?file=aD5PSptcaGi07yH%2Be0am%2BImv96euKcVvnMrFzKUa4ALTA4PbJDebTbsOwAzD1RKo&expiry=oqFh%2B149Y%2BpyhYhZXMTrJQ%3D%3D&mac=ecdfaf3336cc44cb125aff33f4a378f686da12860995be86152009e5c29073ad", title: "2012", isGiatv: false }
+    ];
+
+    // GIATV Source URL to block between 7 PM to 10 PM
+    const giatvSourceUrl = "https://videos.gia.tv/giatv/movies/playlist";
+
+    // Ads list
+    const adsList = [
+      { src: "https://videos.gia.tv/giatv/movies/playlist/210273/Coca_Cola___Happiness_Factory__2006__Netherlands_.mp4", title: "Ads" },
+      { src: "https://videos.gia.tv/giatv/movies/playlist/210273/MARK_CIGARETTES___PHOTO_TVC_30s_HD.mp4", title: "Ads" }
+    ];
+
+    // Load movie
+    function loadMovie(movie) {
+      const videoSource = document.getElementById('videoSource');
+      const movieInfo = document.getElementById('movieInfo');
+      
+      // Check if it's a GIATV movie (not showing title/logo/PG)
+      if (movie.isGiatv) {
+        videoSource.src = movie.src;
+        movieInfo.innerHTML = "";  // No title/logo/PG for GIATV movies
+      } else {
+        videoSource.src = movie.src;
+        movieInfo.innerHTML = `Title: ${movie.title}<br>Parental Guidance: PG`;  // Add title and parental guidance for non-GIATV
+      }
+      document.getElementById('videoPlayer').load();
+    }
+
+    // Event listener for video play
+    document.getElementById('videoPlayer').addEventListener('play', function() {
+      console.log("Video playing...");
+    });
+
+    // Fullscreen toggle function
     function toggleFullScreen() {
       const video = document.getElementById('videoPlayer');
       if (!document.fullscreenElement) {
@@ -108,6 +151,9 @@
         }
       }
     }
+
+    // Load the first movie in the list by default
+    loadMovie(moviesList[0]);
   </script>
 </body>
 </html>
