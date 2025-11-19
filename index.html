@@ -74,6 +74,19 @@
       font-size: 20px;
       z-index: 10;
     }
+
+    .ad-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 20px;
+      font-size: 20px;
+      display: none;
+      z-index: 20;
+    }
   </style>
 </head>
 <body>
@@ -84,6 +97,9 @@
     </video>
     <button class="fullscreen-btn" onclick="toggleFullScreen()">🖥️</button>
     <div id="movieInfo" class="movie-info"></div>
+    <div id="adContainer" class="ad-container">
+      <p>Ad Playing...</p>
+    </div>
   </div>
 
   <script>
@@ -105,7 +121,10 @@
       { src: "https://videos.gia.tv/giatv/movies/playlist/210273/MARK_CIGARETTES___PHOTO_TVC_30s_HD.mp4", title: "Ads" }
     ];
 
-    // Load movie
+    let currentMovieIndex = Math.floor(Math.random() * moviesList.length);
+    let adIndex = 0;
+
+    // Function to load a movie
     function loadMovie(movie) {
       const videoSource = document.getElementById('videoSource');
       const movieInfo = document.getElementById('movieInfo');
@@ -122,9 +141,31 @@
     }
 
     // Event listener for video play
-    document.getElementById('videoPlayer').addEventListener('play', function() {
-      console.log("Video playing...");
+    document.getElementById('videoPlayer').addEventListener('ended', function() {
+      showAd();
     });
+
+    // Show Ad after movie ends
+    function showAd() {
+      const adContainer = document.getElementById('adContainer');
+      adContainer.style.display = 'block';  // Show the ad
+      const adSource = document.getElementById('videoSource');
+      adSource.src = adsList[adIndex].src;
+      document.getElementById('videoPlayer').load();
+      document.getElementById('videoPlayer').play();
+
+      // After the ad finishes, play the next movie
+      document.getElementById('videoPlayer').addEventListener('ended', playNextMovie);
+    }
+
+    // Play the next movie after the ad ends
+    function playNextMovie() {
+      adIndex = (adIndex + 1) % adsList.length;  // Loop through the ads
+      document.getElementById('adContainer').style.display = 'none';  // Hide the ad
+      currentMovieIndex = (currentMovieIndex + 1) % moviesList.length;  // Loop through the movie list
+      loadMovie(moviesList[currentMovieIndex]);
+      document.getElementById('videoPlayer').play();
+    }
 
     // Fullscreen toggle function
     function toggleFullScreen() {
@@ -153,7 +194,7 @@
     }
 
     // Load the first movie in the list by default
-    loadMovie(moviesList[0]);
+    loadMovie(moviesList[currentMovieIndex]);
   </script>
 </body>
 </html>
