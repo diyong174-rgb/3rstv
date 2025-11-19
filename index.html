@@ -90,17 +90,16 @@
     .pg-info {
       position: absolute;
       bottom: 20px;
-      right: 20px;
+      right: 20px; /* Move it to the lower right */
       color: white;
-      font-size: 18px;
+      font-size: 20px;
       z-index: 10;
     }
 
     .ad-container {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 10px; /* Move to upper left */
+      left: 10px; /* Upper left position */
       background: rgba(0, 0, 0, 0.7);
       color: white;
       padding: 20px;
@@ -133,6 +132,7 @@
     </video>
     <button class="fullscreen-btn" onclick="toggleFullScreen()">🖥️</button>
     <div id="movieInfo" class="movie-info"></div>
+    <div id="pgInfo" class="pg-info"></div> <!-- PG Info in lower right -->
     <div id="logo" class="logo"></div>
     <div id="adContainer" class="ad-container">
       <p>Ad Playing...</p>
@@ -145,15 +145,12 @@
   <script>
     // Sample movie list with .m3u8 and .mp4 formats
     const moviesList = [
-      { src: "https://videos.gia.tv/giatv/movies/playlist/210273/Wang_Fam_2015_tt5209276_WD_480.mp4", title: "WangFam", isGiatv: true },
-      { src: "https://videos.gia.tv/giatv/movies/playlist/210631/Crawl_2019_720p_BluRay_x264_ESub_Hollymoviehd.mp4", title: "Crawl", isGiatv: true },
-      { src: "https://jungotvmedia.chanall.tv/jungotv/SolarMayLamokSaKulamboTGFULL10mbps/playlist_720p.m3u8", title: "May Lamok sa loob ng Kulambo", isGiatv: false },
-      { src: "https://jungotvmedia.chanall.tv/jungotv/SOLARKumakasaKahitNagiisaTGFULL10mbps/playlist_720p.m3u8", title: "Kumakasa kahit Mag-isa", isGiatv: false },
-      { src: "https://ph-en.plp4ytv14.workers.dev/nflx.mp4?file=aD5PSptcaGi07yH%2Be0am%2BImv96euKcVvnMrFzKUa4ALTA4PbJDebTbsOwAzD1RKo&expiry=oqFh%2B149Y%2BpyhYhZXMTrJQ%3D%3D&mac=ecdfaf3336cc44cb125aff33f4a378f686da12860995be86152009e5c29073ad", title: "2012", isGiatv: false }
+      { src: "https://videos.gia.tv/giatv/movies/playlist/210273/Wang_Fam_2015_tt5209276_WD_480.mp4", title: "WangFam", isGiatv: true, pg: "Parental Guidance" },
+      { src: "https://videos.gia.tv/giatv/movies/playlist/210631/Crawl_2019_720p_BluRay_x264_ESub_Hollymoviehd.mp4", title: "Crawl", isGiatv: true, pg: "Restricted" },
+      { src: "https://jungotvmedia.chanall.tv/jungotv/SolarMayLamokSaKulamboTGFULL10mbps/playlist_720p.m3u8", title: "May Lamok sa loob ng Kulambo", isGiatv: false, pg: "General Audience" },
+      { src: "https://jungotvmedia.chanall.tv/jungotv/SOLARKumakasaKahitNagiisaTGFULL10mbps/playlist_720p.m3u8", title: "Kumakasa kahit Mag-isa", isGiatv: false, pg: "Parental Guidance" },
+      { src: "https://ph-en.plp4ytv14.workers.dev/nflx.mp4?file=aD5PSptcaGi07yH%2Be0am%2BImv96euKcVvnMrFzKUa4ALTA4PbJDebTbsOwAzD1RKo&expiry=oqFh%2B149Y%2BpyhYhZXMTrJQ%3D%3D&mac=ecdfaf3336cc44cb125aff33f4a378f686da12860995be86152009e5c29073ad", title: "2012", isGiatv: false, pg: "Parental Guidance" }
     ];
-
-    // GIATV Source URL to block between 7 PM to 10 PM (currently not used)
-    const giatvSourceUrl = "https://videos.gia.tv/giatv/movies/playlist";
 
     const adsList = [
       { src: "https://videos.gia.tv/giatv/movies/playlist/210273/Coca_Cola___Happiness_Factory__2006__Netherlands_.mp4", title: "Ads" },
@@ -167,11 +164,12 @@
 
     const videoPlayer = document.getElementById('videoPlayer');
     const errorMessage = document.getElementById('errorMessage');
+    const pgInfo = document.getElementById('pgInfo');  // PG Info Element
 
-    // Generic error handler
+    // Generic error handler (remove pop-up)
     function handleVideoError() {
       console.error("Error playing the video.");
-      errorMessage.style.display = 'block';
+      // errorMessage.style.display = 'block'; // Commented this out to prevent pop-up
     }
 
     // Unified function to play a media item (movie or ad)
@@ -227,11 +225,23 @@
       // Reset error message
       errorMessage.style.display = 'none';
 
-      // Check if it's a GIATV movie (not showing title/logo/PG)
-      if (movie.isGiatv) {
-        movieInfo.innerHTML = "";  // No title for GIATV movies
+      // Hide Title, Logo, and PG info when ad is playing
+      if (isAdPlaying) {
+        movieInfo.style.display = 'none';
+        document.getElementById('logo').style.display = 'none';
+        pgInfo.style.display = 'none';
       } else {
-        movieInfo.innerHTML = movie.title;  // Show the movie title
+        movieInfo.style.display = 'block';
+        document.getElementById('logo').style.display = 'block';
+        pgInfo.style.display = 'block';
+        // Check if it's a GIATV movie (not showing title/logo/PG)
+        if (movie.isGiatv) {
+          movieInfo.innerHTML = "";  // No title for GIATV movies
+          pgInfo.style.display = 'none';  // Hide PG info for GIATV movies
+        } else {
+          movieInfo.innerHTML = movie.title;  // Show the movie title
+          pgInfo.innerHTML = movie.pg;  // Show just the "Parental Guidance" text
+        }
       }
 
       // Play the media using the helper
@@ -252,6 +262,11 @@
       const adContainer = document.getElementById('adContainer');
       adContainer.style.display = 'block';  // Show the ad
       isAdPlaying = true;
+
+      // Hide title, logo, and PG info during ad
+      document.getElementById('movieInfo').style.display = 'none';
+      document.getElementById('logo').style.display = 'none';
+      pgInfo.style.display = 'none';
 
       // Play current ad using the same helper
       playMedia(adsList[adIndex]);
